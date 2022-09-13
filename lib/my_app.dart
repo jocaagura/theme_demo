@@ -22,7 +22,6 @@ class _MyAppState extends State<MyApp> {
         function: () {
           setState(() {
             themeService.switchLightAndDarkTheme();
-            print(themeService.isDark);
           });
         },
       ),
