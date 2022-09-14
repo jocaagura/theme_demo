@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:theme_demo/blocs/bloc_theme.dart';
 
-import 'services/service_theme.dart';
 import 'ui/pages/my_home_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,20 +9,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // TODO: MAKE FULLY FUNCTIONAL THE THEME CHANGE WITH IHERITED WIDGET
-    final themeData = ValueNotifier<ThemeData>(
-        ThemeChangerWidget.of(context).themeService.theme);
-    return ValueListenableBuilder<ThemeData>(
-      valueListenable: themeData,
-      builder: (BuildContext context, ThemeData themeDataTmp, Widget? child) {
-        return MaterialApp(
-          title: 'Theme Demo',
-          theme: themeDataTmp,
-          home: MyHomePage(
-            title: '${themeDataTmp.primaryColor.value}',
-          ),
-        );
-      },
-    );
+    return StreamBuilder<ThemeData>(
+        stream: blocTheme.themeDataStream,
+        builder: (context, snapshot) {
+          print('nowhere');
+          return MaterialApp(
+            title: 'Theme Demo',
+            theme: blocTheme.theme,
+            home: MyHomePage(
+              title: '${blocTheme.theme.primaryColor.value}',
+            ),
+          );
+        });
   }
 }

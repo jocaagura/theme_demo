@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theme_demo/services/service_theme.dart';
+import 'package:theme_demo/blocs/bloc_theme.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -16,11 +16,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter(BuildContext context) {
-    setState(() {
-      ThemeChangerWidget.of(context).themeService.switchLightAndDarkTheme();
-      _counter++;
-    });
+  void _incrementCounter() {
+    blocTheme.switchThemeBetweenLigthAndDark();
+    _counter++;
   }
 
   @override
@@ -38,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter - ${ThemeChangerWidget.of(context).themeService.theme.primaryColor.value}',
+              '$_counter - ${blocTheme.theme.primaryColor.value}',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
@@ -46,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _incrementCounter(context);
+          _incrementCounter();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
