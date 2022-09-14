@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:theme_demo/services/service_theme.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title, required this.function});
+  const MyHomePage({
+    super.key,
+    required this.title,
+  });
 
   final String title;
-  final Function function;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -13,15 +16,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter(BuildContext innerContext) {
+  void _incrementCounter(BuildContext context) {
     setState(() {
-      widget.function();
+      ThemeChangerWidget.of(context).themeService.switchLightAndDarkTheme();
       _counter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print('Rebuilding');
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -34,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '$_counter - ${ThemeChangerWidget.of(context).themeService.theme.primaryColor.value}',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],

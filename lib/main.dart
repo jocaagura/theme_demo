@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'my_app.dart';
+import 'services/service_theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+      ThemeChangerWidget(themeService: ThemeService(), child: const MyApp()));
 }
-
