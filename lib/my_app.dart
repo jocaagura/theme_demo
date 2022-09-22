@@ -9,11 +9,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // TODO: MAKE FULLY FUNCTIONAL THE THEME CHANGE WITH IHERITED WIDGET
-    final themeData = ValueNotifier<ThemeData>(
-        ThemeChangerWidget.of(context).themeService.theme);
+    // final themeData = ValueNotifier<ThemeData>(
+    //     ThemeChangerWidget.of(context).themeService.theme);
     return ValueListenableBuilder<ThemeData>(
-      valueListenable: themeData,
+      valueListenable:
+          ThemeChangerWidget.of(context).themeService.themeValuenotifier,
       builder: (BuildContext context, ThemeData themeDataTmp, Widget? child) {
         return MaterialApp(
           title: 'Theme Demo',

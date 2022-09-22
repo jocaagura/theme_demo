@@ -7,8 +7,16 @@ final themeService = ThemeService();
 
 class ThemeService extends ChangeNotifier {
   bool isDark = false;
-  ThemeData theme = customThemeFromColorScheme(
-      lightColorScheme, GoogleFonts.robotoTextTheme());
+  final ValueNotifier<ThemeData> _themeValuenotifier = ValueNotifier(
+      customThemeFromColorScheme(
+          lightColorScheme, GoogleFonts.robotoTextTheme()));
+
+  ValueNotifier<ThemeData> get themeValuenotifier => _themeValuenotifier;
+
+  ThemeData get theme => _themeValuenotifier.value;
+  set theme(ThemeData themeData) {
+    _themeValuenotifier.value = themeData;
+  }
 
   void switchLightAndDarkTheme() {
     isDark = !isDark;
