@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
     return StreamBuilder<ThemeData>(
         stream: blocTheme.themeDataStream,
         builder: (context, snapshot) {
-          print('nowhere');
           return MaterialApp(
             title: 'Theme Demo',
             theme: blocTheme.theme,

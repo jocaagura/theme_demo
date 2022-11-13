@@ -17,7 +17,6 @@ class BlocTheme {
 
   set theme(ThemeData tmp) {
     _themeController.sink.add(tmp);
-    print('adding theme');
     themeService.theme = tmp;
   }
 

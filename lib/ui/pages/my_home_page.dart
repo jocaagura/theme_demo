@@ -1,32 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:theme_demo/blocs/bloc_theme.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({
-    super.key,
-    required this.title,
-  });
-
+class MyHomePage extends StatelessWidget {
   final String title;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  const MyHomePage({super.key, required this.title});
 
   void _incrementCounter() {
     blocTheme.switchThemeBetweenLigthAndDark();
-    _counter++;
   }
 
   @override
   Widget build(BuildContext context) {
-    print('Rebuilding');
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       body: Center(
         child: Column(
@@ -36,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter - ${blocTheme.theme.primaryColor.value}',
+              '${blocTheme.theme.primaryColor.value}',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
